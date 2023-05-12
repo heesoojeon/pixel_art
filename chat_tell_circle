@@ -1,0 +1,30 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtGui import QPainter, QColor, QPen
+
+class MyWidget(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.setGeometry(100, 100, 400, 400)
+        self.setWindowTitle('Circle and Dot')
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+        pen = QPen(QColor(0, 0, 0))
+        pen.setWidth(2)
+        painter.setPen(pen)
+
+        # Draw a circle
+        painter.drawEllipse(50, 50, 300, 300)
+
+        # Draw a dot in the center of the circle
+        painter.setBrush(QColor(0, 0, 0))
+        painter.drawEllipse(195, 195, 10, 10)
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    widget = MyWidget()
+    widget.show()
+    sys.exit(app.exec_())
